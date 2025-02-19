@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.nullsafetyexample.ui.theme.NullSafetyExampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +31,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun NullSafetyExample(modifier: Modifier = Modifier) {
-    var name: String? = null
+    var properName: String = "Anders"
+    //properName = null // Does not compile
+
+    val name: String? = null
     val length: Int? = name?.length
     val length1: Int? = if (name == null) null else name.length
 
@@ -41,10 +45,7 @@ fun NullSafetyExample(modifier: Modifier = Modifier) {
     // so-called Elvis operator (Elvis Presley's hair style)
     val name22: String = if (name == null) "No Name" else name
 
-    var properName: String = "Anders"
-    //properName = null // Does not compile
-
-    Column(modifier = modifier) {
+    Column(modifier = modifier.padding(16.dp)) {
         Text("name = $name")
         Text("length = $length")
         Text("length1 = $length1")
@@ -54,8 +55,6 @@ fun NullSafetyExample(modifier: Modifier = Modifier) {
         Text("name2_2 = $name22")
         Text("properName = $properName")
     }
-
-
 }
 
 @Preview(showBackground = true)
